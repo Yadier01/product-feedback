@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { NoFeedBack } from "./NoFeedBack";
 import { Item, useMyStore } from "./Store";
+import Link from "next/link";
 export const CategoryMap = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { filteredItems, setFilteredItems } = useMyStore();
@@ -31,7 +32,8 @@ export const CategoryMap = () => {
         <NoFeedBack />
       ) : (
         filteredItems.map((item) => (
-          <div
+          <Link
+            href={`/feedback/${item.id}`}
             key={item.id}
             className="p-10  bg-white gap-4 flex items-center justify-between "
           >
@@ -56,7 +58,7 @@ export const CategoryMap = () => {
                 <p>{item.description}</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))
       )}
     </div>
