@@ -1,50 +1,39 @@
 "use client";
 import { useEffect, useState } from "react";
 import data from "../data.json";
-
-interface Item {
-  id: number;
-  title: string;
-  category: string;
-  upvotes: number;
-  upvoted: boolean;
-  status: string;
-  description: string;
-}
-
+import { useMyStore } from "./Store";
+const ALL_CATEGORY = "All";
+const categories = [ALL_CATEGORY, "UI", "UX", "enhancement", "feature", "bug"];
 export const Category = () => {
-  const [filteredItems, setFilteredItems] = useState<Item[]>([]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>(ALL_CATEGORY);
+  const { setFilteredItems } = useMyStore();
 
-  const filterCategories = (category: string) => {
-    if (category === "All") {
-      setFilteredItems(data.productRequests);
-    } else {
-      const filteredData = data.productRequests.filter(
-        (item) => item.category === category
-      );
+  const updateFilteredItems = (category: string) => {
+    const isAllCategory = category === ALL_CATEGORY;
+    const filteredData = isAllCategory
+      ? data.productRequests
+      : data.productRequests.filter((item) => item.category === category);
 
-      setFilteredItems(filteredData);
-    }
+    setFilteredItems(filteredData);
+    setSelectedCategory(category);
   };
 
   useEffect(() => {
-    setFilteredItems(data.productRequests);
-  }, []);
-  const categories = ["All", "UI", "UX", "enhancement", "feature", "bug"];
+    updateFilteredItems(selectedCategory);
+  }, [selectedCategory]);
 
   return (
-    <div>
-      <ul>
-        {categories.map((c) => (
-          <li key={c}>
-            <button onClick={() => filterCategories(c)}>{c}</button>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {filteredItems.map((item) => (
-          <li key={item.id} className="bg-red-300">
-            {item.title}
+    <div className="bg-white p-8 w-64 rounded-lg">
+      <ul className="flex flex-wrap gap-8">
+        {categories.map((category) => (
+          <li key={category}>
+            <button
+              className="text-sm "
+              onClick={() => updateFilteredItems(category)}
+            >
+              {category}
+            </button>
           </li>
         ))}
       </ul>
