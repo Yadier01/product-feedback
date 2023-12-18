@@ -13,15 +13,18 @@ export const Roadmap = () => {
   const statuses = ["planned", "in-progress", "live"];
 
   return (
-    <div>
-      <h3>Roadmap</h3>
-      <ul className=" list-disc ">
-        {statuses.map((status) => (
-          <li key={status} className="  capitalize ">
-            {status}: {getStatusCount(status)}
-          </li>
-        ))}
-      </ul>
+    <div className="bg-white p-4 px-8">
+      <h3 className="font-bold text-lg">Roadmap</h3>
+      {statuses.map((status) => (
+        <div key={status} className=" flex justify-between  capitalize lex ">
+          <div className="flex items-center gap-3">
+            <div className="h-2 w-2 rounded-full bg-[#f49f85]"></div>
+
+            <p>{status}:</p>
+          </div>
+          <span> {getStatusCount(status)}</span>
+        </div>
+      ))}
     </div>
   );
 };
