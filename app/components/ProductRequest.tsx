@@ -24,7 +24,7 @@ export const ProductRequest = ({
             <p className="text-xs font-bold "> {item.upvotes}</p>
           </button>
           {/*  */}
-          <span className="ml-4 flex flex-col gap-2">
+          <span className="md:ml-4 flex flex-col gap-2">
             <p className="text-[#3a4374] font-bold">{item.title}</p>
             <p className="text-[#647196]">{item.description}</p>
             <p className="w-fit px-3 py-1 rounded-lg capitalize text-[#4661e6] font-bold text-xs bg-[#f2f4ff]">
