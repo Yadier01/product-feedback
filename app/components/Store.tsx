@@ -34,9 +34,13 @@ export interface Item {
 interface Store {
   filteredItems: Item[];
   setFilteredItems: (items: Item[]) => void;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
 const store = create<Store>((set) => ({
+  isOpen: false,
+  setIsOpen: (isOpen: boolean) => set({ isOpen }),
   filteredItems: [],
   setFilteredItems: (items) => set({ filteredItems: items }),
 }));
