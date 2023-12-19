@@ -34,7 +34,7 @@ export const CategoryMap = () => {
       ) : (
         filteredItems.map((item) => (
           <Link
-            className="  bg-white gap-4 flex items-center justify-between "
+            className=" rounded-lg shadow-sm  bg-white gap-4 flex items-center   justify-between "
             href={`/feedback/${item.id}`}
             key={item.id}
           >
