@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import data from "@/app/data.json";
 import { SvgEditFeedback, SvgNewFeedback } from "./Svgs";
+import { useRouter } from "next/navigation";
 interface Props {
   isEdit: boolean;
   params?: any;
@@ -13,6 +14,8 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   );
   const [title, setTitle] = useState(nameFeedback?.title);
   const [description, setDescription] = useState(nameFeedback?.description);
+
+  const router = useRouter();
 
   const tiltleChange = (e: any) => {
     setTitle(e.target.value);
@@ -113,7 +116,10 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
                 params === undefined && "justify-end w-full"
               }`}
             >
-              <button className="bg-[#3a4374] p-3 rounded-lg text-white font-bold">
+              <button
+                onClick={() => router.back()}
+                className="bg-[#3a4374] p-3 rounded-lg text-white font-bold"
+              >
                 Cancel
               </button>
               <button className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold">
