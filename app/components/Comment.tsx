@@ -29,7 +29,7 @@ export const Comment = ({ comment }: any) => {
         )}
       </div>
       {comment.replies?.map((reply: any) => (
-        <div className="pl-5 text-xs">
+        <div className="pl-5 text-xs" key={reply.user.name}>
           <Comment comment={reply} />
         </div>
       ))}
