@@ -28,13 +28,13 @@ export const CategoryMap = () => {
   }
 
   return (
-    <div className="  flex flex-col gap-4">
+    <div className="  w-full flex flex-col gap-4">
       {filteredItems.length === 0 ? (
         <NoFeedBack />
       ) : (
         filteredItems.map((item) => (
           <Link
-            className=" rounded-lg shadow-sm  bg-white gap-4 flex items-center   justify-between "
+            className=" rounded-lg shadow-sm w-full bg-white gap-4 flex items-center   justify-between "
             href={`/feedback/${item.id}`}
             key={item.id}
           >

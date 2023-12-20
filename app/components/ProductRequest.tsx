@@ -18,7 +18,7 @@ export const ProductRequest = ({
           {/* upvotes button hidden normal  flex if md */}
           <button
             onClick={() => incrementUpvotes(item.id)}
-            className="md:flex  h-fit rounded-lg gap-2 bg-[#f2f4ff] px-2  py-2 w-14  hidden    items-center bg-[#f2f4fftext-[#647196]"
+            className="md:flex  h-[58px] flex-col rounded-lg gap-2 bg-[#f2f4ff]   py-3 w-[40px]  hidden    items-center bg-[#f2f4fftext-[#647196]"
           >
             <SvgsArrowUp />
             <p className="text-xs font-bold "> {item.upvotes}</p>
@@ -43,7 +43,7 @@ export const ProductRequest = ({
       <div className="flex items-center justify-between text-sm md:hidden ">
         <button
           onClick={() => incrementUpvotes(item.id)}
-          className="flex  h-fit rounded-lg gap-2 bg-[#f2f4ff] px-2  py-2 w-14      items-center bg-[#f2f4fftext-[#647196]]"
+          className="flex flex-col h-fit rounded-lg gap-2 bg-[#f2f4ff] px-2  py-2 w-14      items-center text[#647196"
         >
           <SvgsArrowUp />
           <p className="text-xs font-bold "> {item.upvotes}</p>

@@ -2,7 +2,7 @@ import { SvgNoFeedBack } from "./Svgs";
 
 export const NoFeedBack = () => {
   return (
-    <div className="bg-white w-full items-center justify-center flex flex-col p-32 gap-10">
+    <div className="bg-white w-full items-center justify-center flex flex-col p-24  rounded-lg gap-10">
       <SvgNoFeedBack />
       <h1 className="text-[#3a4374] text-xl font-bold">
         There is no feedback yet
