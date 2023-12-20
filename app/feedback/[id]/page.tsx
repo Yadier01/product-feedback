@@ -20,7 +20,7 @@ export default function page({ params }: { params: { id: number } }) {
           </div>
           <div className="bg-white p-6 lg:p-8">
             {item?.comments.map((comment) => (
-              <Comment comment={comment} />
+              <Comment comment={comment} key={comment.id} />
             ))}
           </div>
         </div>

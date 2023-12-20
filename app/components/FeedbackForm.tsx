@@ -66,7 +66,9 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             </p>
             <select name="" id="" className="rounded-md p-3">
               {Category.map((item) => (
-                <option value={item}>{item}</option>
+                <option key={item} value={item}>
+                  {item}
+                </option>
               ))}
             </select>
           </div>
@@ -78,7 +80,11 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             <p className="text-[#647196]">Change feature state</p>
             <select name="updateSatus" className="rounded-md p-3 w-full">
               {params &&
-                Status.map((item) => <option value="item">{item}</option>)}
+                Status.map((item) => (
+                  <option key={item} value="item">
+                    {item}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="flex flex-col gap-1">
