@@ -142,7 +142,6 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               >
                 Cancel
               </button>
-              <Link href={"/"}>gobackas</Link>
               <button className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold">
                 Save Change
               </button>
