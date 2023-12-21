@@ -36,13 +36,23 @@ interface Store {
   setFilteredItems: (items: Item[]) => void;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  deleteItem: (id: number) => void;
 }
 
-const store = create<Store>((set) => ({
+const store = create<Store>((set, get) => ({
+  filteredItems: JSON.parse(localStorage.getItem("filteredItems") || "[]"),
+  setFilteredItems: (items: Item[]) => set({ filteredItems: items }),
   isOpen: false,
   setIsOpen: (isOpen: boolean) => set({ isOpen }),
-  filteredItems: [],
-  setFilteredItems: (items) => set({ filteredItems: items }),
+  deleteItem: (id: number) => {
+    set((state) => {
+      const newFilteredItems = state.filteredItems.filter(
+        (item) => item.id !== id
+      );
+      localStorage.setItem("filteredItems", JSON.stringify(newFilteredItems));
+      return { filteredItems: newFilteredItems };
+    });
+  },
 }));
 
 export const useMyStore = () => useStore(store);
