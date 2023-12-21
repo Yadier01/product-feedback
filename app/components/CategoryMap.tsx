@@ -17,16 +17,23 @@ export const CategoryMap = () => {
 
     setFilteredItems(newItems);
   };
+
   useEffect(() => {
-    if (filteredItems.length) {
-      setIsLoading(false);
-    }
+    setIsLoading(!filteredItems.length);
   }, [filteredItems]);
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem("filteredItems");
+    if (storedItems) {
+      setFilteredItems(JSON.parse(storedItems));
+    }
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  // Rest of your component...
   return (
     <div className="  w-full flex flex-col gap-4">
       {filteredItems.length === 0 ? (
