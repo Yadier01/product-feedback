@@ -40,7 +40,13 @@ interface Store {
 }
 
 const store = createStore<Store>((set, get) => ({
-  filteredItems: JSON.parse(localStorage.getItem("filteredItems") || "[]"),
+  filteredItems: (() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("filteredItems") || "[]");
+    } else {
+      return [];
+    }
+  })(),
   setFilteredItems: (items: Item[]) => set({ filteredItems: items }),
   isOpen: false,
   setIsOpen: (isOpen: boolean) => set({ isOpen }),
