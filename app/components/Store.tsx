@@ -49,7 +49,9 @@ const store = createStore<Store>((set, get) => ({
       const newFilteredItems = state.filteredItems.filter(
         (item) => item.id !== id
       );
-      localStorage.setItem("filteredItems", JSON.stringify(newFilteredItems));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("filteredItems", JSON.stringify(newFilteredItems));
+      }
       return { filteredItems: newFilteredItems };
     });
   },
