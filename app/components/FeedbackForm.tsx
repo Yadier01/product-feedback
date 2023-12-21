@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "@/app/data.json";
 import { SvgEditFeedback, SvgNewFeedback } from "./Svgs";
 import { useRouter } from "next/navigation";
+import { useMyStore, Item } from "./Store";
+import Link from "next/link";
 interface Props {
   isEdit: boolean;
   params?: any;
@@ -14,7 +16,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   );
   const [title, setTitle] = useState(nameFeedback?.title);
   const [description, setDescription] = useState(nameFeedback?.description);
-
+  const { deleteItem } = useMyStore();
   const router = useRouter();
 
   const tiltleChange = (e: any) => {
@@ -32,6 +34,12 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   );
   const Category = ["Feature", "UI", "UX", "Enhancement", "Bug"];
   const Status = ["Suggestion", "Planned", "In-Progress", "Live"];
+
+  const deleteHandler = (id: number) => {
+    const numberId = Number(id);
+    deleteItem(numberId);
+  };
+
   return (
     <div className=" h-screen bg-[#f7f8fd] w-screen text-sm flex flex-col justify-center  items-center">
       <div className="bg-white relative p-10  max-w-lg ">
@@ -57,6 +65,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               onChange={tiltleChange}
             />
           </div>
+
           <div className="flex flex-col gap-1">
             <label htmlFor="category" className="text-[#3a4374] font-bold">
               Category
@@ -73,7 +82,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             </select>
           </div>
 
-          <div className="w-full">
+          <div className={`w-full ${isEdit ? "block " : "hidden"}`}>
             <label htmlFor="UpdateStatus" className="text-[#3a4374] font-bold">
               Upade Status
             </label>
@@ -81,12 +90,13 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             <select name="updateSatus" className="rounded-md p-3 w-full">
               {params &&
                 Status.map((item) => (
-                  <option key={item} value="item">
+                  <option key={item} value={item}>
                     {item}
                   </option>
                 ))}
             </select>
           </div>
+
           <div className="flex flex-col gap-1">
             <label
               htmlFor="feedbackDetail"
@@ -107,13 +117,17 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               value={description}
             ></textarea>
           </div>
+
           <div
             className={`flex justify-between ${
               params && "justify-center"
             } w-full`}
           >
             {params && (
-              <button className="bg-[#d73737] p-3 rounded-lg text-white font-bold">
+              <button
+                onClick={() => deleteHandler(params.id)}
+                className="bg-[#d73737] p-3 rounded-lg text-white font-bold"
+              >
                 Delete
               </button>
             )}
@@ -128,6 +142,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               >
                 Cancel
               </button>
+              <Link href={"/"}>gobackas</Link>
               <button className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold">
                 Save Change
               </button>
