@@ -1,4 +1,4 @@
-import create from "zustand/vanilla";
+import { createStore } from "zustand/vanilla";
 import { useStore } from "zustand";
 
 interface User {
@@ -39,7 +39,7 @@ interface Store {
   deleteItem: (id: number) => void;
 }
 
-const store = create<Store>((set, get) => ({
+const store = createStore<Store>((set, get) => ({
   filteredItems: JSON.parse(localStorage.getItem("filteredItems") || "[]"),
   setFilteredItems: (items: Item[]) => set({ filteredItems: items }),
   isOpen: false,
