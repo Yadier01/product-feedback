@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import data from "@/app/data.json";
 import { SvgEditFeedback, SvgNewFeedback } from "./Svgs";
 import { useRouter } from "next/navigation";
 import { useMyStore, Item } from "./Store";
-import Link from "next/link";
 interface Props {
   isEdit: boolean;
   params?: any;
@@ -38,6 +37,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   const deleteHandler = (id: number) => {
     const numberId = Number(id);
     deleteItem(numberId);
+    router.push("/");
   };
 
   return (
