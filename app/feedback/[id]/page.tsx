@@ -2,10 +2,12 @@ import data from "../../data.json";
 import { Comment } from "../../components/Comment";
 import { ProductRequest } from "@/app/components/ProductRequest";
 import Link from "next/link";
+import { NoComment } from "@/app/components/NoComment";
 
 export default function page({ params }: { params: { id: number } }) {
   const item = data.productRequests.find((item) => item.id == params.id);
   console.log(item);
+  console.log(item?.comments.length === 0);
 
   return (
     <>
@@ -19,9 +21,13 @@ export default function page({ params }: { params: { id: number } }) {
             <ProductRequest item={item} />
           </div>
           <div className="bg-white p-6 lg:p-8">
-            {item?.comments.map((comment) => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
+            {item?.comments.length === 0 ? (
+              <NoComment />
+            ) : (
+              item?.comments.map((comment) => (
+                <Comment comment={comment} key={comment.id} />
+              ))
+            )}
           </div>
         </div>
       </main>
