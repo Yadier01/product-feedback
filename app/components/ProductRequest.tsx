@@ -43,7 +43,7 @@ export const ProductRequest = ({
       <div className="flex items-center justify-between text-sm md:hidden ">
         <button
           onClick={() => incrementUpvotes(item.id)}
-          className="flex flex-col h-fit rounded-lg gap-2 bg-[#f2f4ff] px-2  py-2 w-14      items-center text[#647196"
+          className="flex flex-col h-fit rounded-lg gap-2 bg-[#f2f4ff] px-2  py-2 w-14      items-center text-[#647196]"
         >
           <SvgsArrowUp />
           <p className="text-xs font-bold "> {item.upvotes}</p>
