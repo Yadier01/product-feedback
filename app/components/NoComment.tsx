@@ -15,7 +15,7 @@ export const NoComment = () => {
     setUserComment(e.target.value);
   };
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex rounded-lg flex-col gap-6  bg-white p-6 lg:p-8">
       <p>Add Comment</p>
       <textarea
         name=""
