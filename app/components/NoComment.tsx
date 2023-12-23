@@ -1,19 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export const NoComment = () => {
   const [userComment, setUserComment] = useState("");
   const [charLenght, setCharLenght] = useState(255);
   const inputHandler = (e: any) => {
     if (e.target.value.length > 256) return;
 
-    if (e.nativeEvent.inputType === "deleteContentBackward") {
-      setCharLenght(charLenght + 1);
-    } else {
-      setCharLenght(charLenght - 1);
-    }
-
+    setCharLenght(255 - e.target.value.length);
     setUserComment(e.target.value);
   };
+  useEffect(() => {}, [inputHandler]);
   return (
     <div className="flex rounded-lg flex-col gap-6  bg-white p-6 lg:p-8">
       <p>Add Comment</p>
