@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className=" min-h-screen flex flex-col md:justify-center md:items-center    bg-[#f7f8fd]  ">
       <div className="lg:flex hidden py-32 justify-center  min-h-screen gap-4 max-w-[1100px] w-full  ">
-        <div className="flex flex-col gap-4 w-fit">
+        <div className="flex flex-col gap-4 w-[255px]">
           <Square />
           <Category />
           <Roadmap />
