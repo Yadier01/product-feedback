@@ -19,7 +19,7 @@ export const CategoryMap = () => {
   };
 
   useEffect(() => {
-    setIsLoading(!filteredItems.length);
+    setIsLoading(false);
   }, [filteredItems]);
 
   useEffect(() => {
@@ -33,7 +33,6 @@ export const CategoryMap = () => {
     return <div>Loading...</div>;
   }
 
-  // Rest of your component...
   return (
     <div className="  w-full flex flex-col gap-4">
       {filteredItems.length === 0 ? (
