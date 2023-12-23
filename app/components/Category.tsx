@@ -24,7 +24,7 @@ export const Category = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="bg-white p-8 w-64 rounded-lg">
+    <div className="bg-white p-8 w- rounded-lg max-w-full">
       <ul className="flex flex-wrap gap-8">
         {categories.map((category) => (
           <li key={category}>

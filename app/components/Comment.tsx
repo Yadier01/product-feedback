@@ -1,6 +1,8 @@
+import { NoComment } from "./NoComment";
+
 export const Comment = ({ comment }: any) => {
   return (
-    <div className=" text-xs lg:p-6 hyphens-auto  ">
+    <div className=" text-xs p-3  hyphens-auto ">
       <div className="b-6 mb-4">
         <div className="flex gap-4 mb-3">
           <img src={comment.user.image} alt="" className="rounded-full h-10" />
@@ -13,7 +15,7 @@ export const Comment = ({ comment }: any) => {
         </div>
 
         {!comment.replyingTo && (
-          <p className="text-sm text-[#647196]">{comment.content}</p>
+          <p className="text-sm text-[#647196] ">{comment.content}</p>
         )}
       </div>
       <div className="flex  g-3 ">
@@ -29,7 +31,7 @@ export const Comment = ({ comment }: any) => {
         )}
       </div>
       {comment.replies?.map((reply: any) => (
-        <div className="pl-5 text-xs" key={reply.user.name}>
+        <div className="pl-5 text-xs " key={reply.user.name}>
           <Comment comment={reply} key={reply.user.name} />
         </div>
       ))}
