@@ -9,7 +9,6 @@ export const NoComment = () => {
     setCharLenght(255 - e.target.value.length);
     setUserComment(e.target.value);
   };
-  useEffect(() => {}, [inputHandler]);
   return (
     <div className="flex rounded-lg flex-col gap-6  bg-white p-6 lg:p-8">
       <p>Add Comment</p>
