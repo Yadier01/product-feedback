@@ -13,7 +13,7 @@ export const Roadmap = () => {
   const statuses = ["planned", "in-progress", "live"];
 
   return (
-    <div className="bg-white p-4 px-8 w-[255px]">
+    <div className="bg-white p-4 px-8  max-w-full">
       <h3 className="font-bold text-lg">Roadmap</h3>
       {statuses.map((status) => (
         <div key={status} className=" flex justify-between  capitalize lex ">
