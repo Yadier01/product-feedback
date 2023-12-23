@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export const NoComment = () => {
   const [userComment, setUserComment] = useState("");
   const [charLenght, setCharLenght] = useState(255);
