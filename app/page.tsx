@@ -1,7 +1,6 @@
 import { Roadmap } from "./components/Roadmap";
 import { Category } from "./components/Category";
 import { CategoryMap } from "./components/CategoryMap";
-import Link from "next/link";
 import { Square } from "./components/Square";
 import { ButtonBurger } from "./components/ButtonBurger";
 import { MobileSidebar } from "./components/mobileSidebar";
