@@ -1,5 +1,4 @@
 "use client";
-import { set } from "mongoose";
 import { useState } from "react";
 export const NoComment = () => {
   const [userComment, setUserComment] = useState("");
