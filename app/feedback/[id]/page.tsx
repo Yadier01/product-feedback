@@ -3,7 +3,6 @@ import { Comment } from "../../components/Comment";
 import { ProductRequest } from "@/app/components/ProductRequest";
 import Link from "next/link";
 import { NoComment } from "@/app/components/NoComment";
-import { it } from "node:test";
 
 export default function page({ params }: { params: { id: number } }) {
   const item = data.productRequests.find((item) => item.id == params.id);
