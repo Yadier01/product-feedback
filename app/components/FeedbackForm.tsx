@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import data from "@/app/data.json";
 import { SvgEditFeedback, SvgNewFeedback } from "./Svgs";
 import { useRouter } from "next/navigation";
-import { useMyStore, Item } from "./Store";
+import { useMyStore } from "./Store";
 interface Props {
   isEdit: boolean;
   params?: any;
