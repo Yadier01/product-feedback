@@ -1,5 +1,3 @@
-import { NoComment } from "./NoComment";
-
 export const Comment = ({ comment }: any) => {
   return (
     <div className=" text-xs p-3  hyphens-auto ">
@@ -13,7 +11,6 @@ export const Comment = ({ comment }: any) => {
             <p className="text-xs text-[#647196]">@{comment.user.username}</p>
           </div>
         </div>
-
         {!comment.replyingTo && (
           <p className="text-sm text-[#647196] ">{comment.content}</p>
         )}
