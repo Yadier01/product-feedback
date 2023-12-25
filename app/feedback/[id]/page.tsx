@@ -6,8 +6,6 @@ import { NoComment } from "@/app/components/NoComment";
 
 export default function page({ params }: { params: { id: number } }) {
   const item = data.productRequests.find((item) => item.id == params.id);
-  console.log(item);
-  console.log(item?.comments.length === 0);
 
   return (
     <main className="w-screen flex min-h-screen justify-center  bg-[#f7f8fd]  items-center">
@@ -26,9 +24,12 @@ export default function page({ params }: { params: { id: number } }) {
             </h3>
           }
           {item?.comments.map((comment) => (
-            <Comment comment={comment} key={comment.id} />
+            <>
+              <Comment comment={comment} key={comment.id} />
+            </>
           ))}
         </div>
+
         <NoComment />
       </div>
     </main>
