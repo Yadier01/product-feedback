@@ -142,7 +142,10 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               >
                 Cancel
               </button>
-              <button className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold">
+              <button
+                type="submit"
+                className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold"
+              >
                 Save Change
               </button>
             </div>
