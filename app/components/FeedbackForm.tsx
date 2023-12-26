@@ -13,14 +13,29 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   const nameFeedback = data.productRequests.find(
     (item) => item.id == params?.id
   );
-  const [title, setTitle] = useState(nameFeedback?.title);
-  const [description, setDescription] = useState(nameFeedback?.description);
-  const { deleteItem } = useMyStore();
+  const [title, setTitle] = useState<string | any>(nameFeedback?.title);
+
+  const [description, setDescription] = useState<string | any>(
+    nameFeedback?.description
+  );
+
+  const { filteredItems, setFilteredItems, deleteItem, addItem } = useMyStore();
+  const [newFeedback, setNewFeedBack] = useState({
+    id: filteredItems.length + 1,
+    title: "",
+    category: "Bug",
+    upvotes: 3,
+    upvoted: false,
+    status: "suggestion",
+    description: "sex",
+    comments: [],
+  });
   const router = useRouter();
 
   const tiltleChange = (e: any) => {
     setTitle(e.target.value);
   };
+
   const categoryChange = (e: any) => {
     setDescription(e.target.value);
   };
@@ -39,7 +54,34 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
     deleteItem(numberId);
     router.push("/");
   };
+  const saveHandler = () => {
+    const updatedFeedback = {
+      ...newFeedback,
+      title: title,
+      description: description,
+    };
 
+    addItem(updatedFeedback);
+
+    router.push("/");
+  };
+  const saveEditHandler = () => {
+    const newItems = filteredItems.map((item) =>
+      Number(item.id) === Number(params?.id)
+        ? {
+            ...item,
+            title: title,
+            description: description,
+          }
+        : item
+    );
+    console.log(newItems);
+    setFilteredItems(newItems);
+
+    localStorage.setItem("filteredItems", JSON.stringify(newItems));
+
+    router.push("/");
+  };
   return (
     <div className=" h-screen bg-[#f7f8fd] w-screen text-sm flex flex-col justify-center  items-center">
       <div className="bg-white relative p-10  max-w-lg ">
@@ -142,12 +184,23 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               >
                 Cancel
               </button>
-              <button
-                type="submit"
-                className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold"
-              >
-                Save Change
-              </button>
+              {isEdit ? (
+                <button
+                  type="submit"
+                  className={`bg-[#ad1fea] p-3 rounded-lg text-white font-bold `}
+                  onClick={saveEditHandler}
+                >
+                  Save Change
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold"
+                  onClick={saveHandler}
+                >
+                  Save
+                </button>
+              )}
             </div>
           </div>
         </form>
@@ -155,3 +208,15 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
     </div>
   );
 };
+function addItem(updatedFeedback: {
+  title: any;
+  description: any;
+  id: number;
+  category: string;
+  upvotes: number;
+  upvoted: boolean;
+  status: string;
+  comments: never[];
+}) {
+  throw new Error("Function not implemented.");
+}
