@@ -206,15 +206,3 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
     </div>
   );
 };
-function addItem(updatedFeedback: {
-  title: any;
-  description: any;
-  id: number;
-  category: string;
-  upvotes: number;
-  upvoted: boolean;
-  status: string;
-  comments: never[];
-}) {
-  throw new Error("Function not implemented.");
-}
