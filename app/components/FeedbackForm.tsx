@@ -14,11 +14,9 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
     (item) => item.id == params?.id
   );
   const [title, setTitle] = useState<string | any>(nameFeedback?.title);
-
   const [description, setDescription] = useState<string | any>(
     nameFeedback?.description
   );
-
   const { filteredItems, setFilteredItems, deleteItem, addItem } = useMyStore();
   const [newFeedback, setNewFeedBack] = useState({
     id: filteredItems.length + 1,
