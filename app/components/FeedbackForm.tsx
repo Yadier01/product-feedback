@@ -4,6 +4,7 @@ import data from "@/app/data.json";
 import { SvgEditFeedback, SvgNewFeedback } from "./Svgs";
 import { useRouter } from "next/navigation";
 import { useMyStore } from "./Store";
+import { BttnSave } from "./FeedBackFormUI/BttnSave";
 interface Props {
   isEdit: boolean;
   params?: any;
@@ -182,23 +183,11 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               >
                 Cancel
               </button>
-              {isEdit ? (
-                <button
-                  type="submit"
-                  className={`bg-[#ad1fea] p-3 rounded-lg text-white font-bold `}
-                  onClick={saveEditHandler}
-                >
-                  Save Change
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="bg-[#ad1fea] p-3 rounded-lg text-white font-bold"
-                  onClick={saveHandler}
-                >
-                  Save
-                </button>
-              )}
+              <BttnSave
+                isEdit={isEdit}
+                saveEditHandler={saveEditHandler}
+                saveHandler={saveHandler}
+              />
             </div>
           </div>
         </form>
