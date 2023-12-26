@@ -37,17 +37,34 @@ interface Store {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   deleteItem: (id: number) => void;
+  addItem: (item: Item) => void;
 }
 
-const store = createStore<Store>((set, get) => ({
-  filteredItems: (() => {
-    if (typeof window !== "undefined") {
-      return JSON.parse(localStorage.getItem("filteredItems") || "[]");
-    } else {
-      return [];
-    }
-  })(),
+const getFromLocalStorage = (key: string, defaultValue: any[]) => {
+  if (typeof window !== "undefined") {
+    return JSON.parse(
+      localStorage.getItem(key) || JSON.stringify(defaultValue)
+    );
+  }
+  return defaultValue;
+};
+
+const saveToLocalStorage = (key: string, value: any[]) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+};
+
+const store = createStore<Store>((set) => ({
+  filteredItems: getFromLocalStorage("filteredItems", []),
   setFilteredItems: (items: Item[]) => set({ filteredItems: items }),
+  addItem: (item: Item) => {
+    set((state) => {
+      const newFilteredItems = [...state.filteredItems, item];
+      saveToLocalStorage("filteredItems", newFilteredItems);
+      return { filteredItems: newFilteredItems };
+    });
+  },
   isOpen: false,
   setIsOpen: (isOpen: boolean) => set({ isOpen }),
   deleteItem: (id: number) => {
@@ -55,9 +72,7 @@ const store = createStore<Store>((set, get) => ({
       const newFilteredItems = state.filteredItems.filter(
         (item) => item.id !== id
       );
-      if (typeof window !== "undefined") {
-        localStorage.setItem("filteredItems", JSON.stringify(newFilteredItems));
-      }
+      saveToLocalStorage("filteredItems", newFilteredItems);
       return { filteredItems: newFilteredItems };
     });
   },
