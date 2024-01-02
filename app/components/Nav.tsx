@@ -58,7 +58,7 @@ export const Nav = ({ mobile }: Props) => {
               onChange={handleChange}
             >
               {sortBy.map((item) => (
-                <option>{item}</option>
+                <option key={item}>{item}</option>
               ))}
             </select>
           </p>
