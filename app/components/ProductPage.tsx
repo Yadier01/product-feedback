@@ -20,8 +20,12 @@ export const ProductPage = ({ params }: any) => {
         <ProductRequest item={item} />
       </div>
       <div className="flex flex-col gap-6 p-8  bg-white   rounded-lg">
-        {<h3 className="font-bold text-lg">{item?.comments.length} Comment</h3>}
-        {item?.comments.map((comment) => (
+        {
+          <h3 className="font-bold text-lg">
+            {item?.comments?.length} Comment
+          </h3>
+        }
+        {item?.comments?.map((comment) => (
           <>
             <Comment comment={comment} key={comment.id} />
           </>
