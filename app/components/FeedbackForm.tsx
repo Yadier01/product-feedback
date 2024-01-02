@@ -22,7 +22,7 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   const [newFeedback, setNewFeedBack] = useState({
     id: filteredItems.length + 1,
     title: "",
-    category: "Bug",
+    category: "bug",
     upvotes: 3,
     upvoted: false,
     status: "suggestion",
