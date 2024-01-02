@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import data from "../data.json";
 
 export const Roadmap = () => {
