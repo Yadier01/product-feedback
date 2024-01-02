@@ -1,9 +1,45 @@
+"use client";
 import Link from "next/link";
+import { useMyStore } from "./Store";
 interface Props {
   mobile?: boolean;
 }
 
 export const Nav = ({ mobile }: Props) => {
+  const { filteredItems, setFilteredItems } = useMyStore();
+  const sortBy = [
+    "most upvotes",
+    "least upvotes",
+    "most comments",
+    "least comments",
+  ];
+
+  const handleChange = (e: any) => {
+    let sortedItems;
+
+    switch (e.target.value) {
+      case "most upvotes":
+        sortedItems = [...filteredItems].sort((a, b) => b.upvotes - a.upvotes);
+        break;
+      case "least upvotes":
+        sortedItems = [...filteredItems].sort((a, b) => a.upvotes - b.upvotes);
+        break;
+      case "most comments":
+        sortedItems = [...filteredItems].sort(
+          (a, b) => (b.comments?.length || 0) - (a.comments?.length || 0)
+        );
+        break;
+      case "least comments":
+        sortedItems = [...filteredItems].sort(
+          (a, b) => (a.comments?.length || 0) - (b.comments?.length || 0)
+        );
+        break;
+      default:
+        sortedItems = filteredItems;
+    }
+
+    setFilteredItems(sortedItems);
+  };
   return (
     <section
       className={`bg-[#373f68]  min-h-20 flex w-full items-center  ${
@@ -18,12 +54,12 @@ export const Nav = ({ mobile }: Props) => {
             <select
               name="upvotes"
               id=""
-              className=" font-bold text-md   text-white bg-[#373f68]"
+              className=" font-bold text-md p-1   text-white bg-[#373f68]"
+              onChange={handleChange}
             >
-              <option value="mostUpvotes">most upvotes</option>
-              <option value="lestUpvotes"> least Upvotes </option>
-              <option value="leastComments">most comments</option>
-              <option value="lestComments"> least comments</option>
+              {sortBy.map((item) => (
+                <option>{item}</option>
+              ))}
             </select>
           </p>
         </div>
