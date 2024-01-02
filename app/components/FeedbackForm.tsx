@@ -18,15 +18,18 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
   const [description, setDescription] = useState<string | any>(
     nameFeedback?.description
   );
+
   const { filteredItems, setFilteredItems, deleteItem, addItem } = useMyStore();
+  const [category, setCategory] = useState<string | any>("");
+  const [status, setStatus] = useState<string | any>("");
   const [newFeedback, setNewFeedBack] = useState({
     id: filteredItems.length + 1,
     title: "",
     category: "bug",
-    upvotes: 3,
+    upvotes: 0,
     upvoted: false,
     status: "suggestion",
-    description: "sex",
+    description: "description",
     comments: [],
   });
   const router = useRouter();
@@ -58,6 +61,8 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
       ...newFeedback,
       title: title,
       description: description,
+      category: category,
+      status: status,
     };
 
     addItem(updatedFeedback);
@@ -71,6 +76,8 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             ...item,
             title: title,
             description: description,
+            category: category,
+            status: status,
           }
         : item
     );
@@ -81,6 +88,17 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
 
     router.push("/");
   };
+
+  const categoryHandleChange = (e: any) => {
+    setCategory(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const statusHandleChange = (e: any) => {
+    setStatus(e.target.value);
+    console.log(e.target.value);
+  };
+
   return (
     <div className=" h-screen bg-[#f7f8fd] w-screen text-sm flex flex-col justify-center  items-center">
       <div className="bg-white relative p-10  max-w-lg ">
@@ -114,7 +132,12 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
             <p className="text-[#647196]">
               Choose a category for your feedback
             </p>
-            <select name="" id="" className="rounded-md p-3">
+            <select
+              name=""
+              id=""
+              className="rounded-md p-3"
+              onChange={categoryHandleChange}
+            >
               {Category.map((item) => (
                 <option key={item} value={item}>
                   {item}
@@ -128,10 +151,18 @@ export const FeedbackForm = ({ isEdit, params }: Props) => {
               Upade Status
             </label>
             <p className="text-[#647196]">Change feature state</p>
-            <select name="updateSatus" className="rounded-md p-3 w-full">
+            <select
+              name="updateSatus"
+              className="rounded-md p-3 w-full"
+              onChange={statusHandleChange}
+            >
               {params &&
                 Status.map((item) => (
-                  <option key={item} value={item}>
+                  <option
+                    key={item}
+                    value={item}
+                    onClick={() => console.log(item)}
+                  >
                     {item}
                   </option>
                 ))}
