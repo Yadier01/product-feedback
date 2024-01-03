@@ -55,27 +55,26 @@ const saveToLocalStorage = (key: string, value: any[]) => {
   }
 };
 
+const updateAndSaveItems = (set: any, newItems: Item[]) => {
+  saveToLocalStorage("filteredItems", newItems);
+  return { filteredItems: newItems };
+};
+
 const store = createStore<Store>((set) => ({
   filteredItems: getFromLocalStorage("filteredItems", []),
-  setFilteredItems: (items: Item[]) => set({ filteredItems: items }),
-  addItem: (item: Item) => {
-    set((state) => {
-      const newFilteredItems = [...state.filteredItems, item];
-      saveToLocalStorage("filteredItems", newFilteredItems);
-      return { filteredItems: newFilteredItems };
-    });
-  },
+  setFilteredItems: (items: Item[]) => set(updateAndSaveItems(set, items)),
+  addItem: (item: Item) =>
+    set((state: Store) =>
+      updateAndSaveItems(set, [...state.filteredItems, item])
+    ),
   isOpen: false,
   setIsOpen: (isOpen: boolean) => set({ isOpen }),
-  deleteItem: (id: number) => {
-    set((state) => {
-      const newFilteredItems = state.filteredItems.filter(
-        (item) => item.id !== id
-      );
-      saveToLocalStorage("filteredItems", newFilteredItems);
-      return { filteredItems: newFilteredItems };
-    });
-  },
+  deleteItem: (id: number) =>
+    set((state: Store) =>
+      updateAndSaveItems(
+        set,
+        state.filteredItems.filter((item) => item.id !== id)
+      )
+    ),
 }));
-
 export const useMyStore = () => useStore(store);
