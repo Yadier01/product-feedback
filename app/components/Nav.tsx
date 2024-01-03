@@ -48,7 +48,8 @@ export const Nav = ({ mobile }: Props) => {
     >
       <nav className="flex items-center justify-between w-full p-3 ">
         <div className="flex gap-3 text-white items-center">
-          <h3 className="font-bold text-lg">6 Suggestion</h3>
+          {mobile ? "" : <h3 className="font-bold text-lg">6 Suggestion</h3>}
+
           <p className="text-sm">
             Sort by:
             <select
@@ -65,7 +66,9 @@ export const Nav = ({ mobile }: Props) => {
         </div>
         <Link
           href={"/feedback/add"}
-          className="bg-[#ad1fea] px-5 py-3 text-white font-semibold rounded-xl"
+          className={`bg-[#ad1fea] ${
+            mobile ? "py-2 px-3s" : "px-5 py-3"
+          } text-white font-semibold rounded-xl`}
         >
           + Add FeedBack
         </Link>
