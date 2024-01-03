@@ -1,16 +1,30 @@
 export const Comment = ({ comment }: any) => {
   return (
-    <div className=" text-xs p-3  hyphens-auto ">
+    <article className=" text-xs p-3  hyphens-auto ">
       <div className="b-6 mb-4">
-        <div className="flex gap-4 mb-3">
-          <img src={comment.user.image} alt="" className="rounded-full h-10" />
-          <div>
-            <p className="font-bold text-md text-[#3a4374] text-md">
-              {comment.user.name}
-            </p>
-            <p className="text-xs text-[#647196]">@{comment.user.username}</p>
-          </div>
+        <div className="flex  justify-between gap-4 mb-3">
+          <span className="flex  gap-4">
+            <img
+              src={comment.user.image}
+              alt=""
+              className="rounded-full h-10"
+            />
+            <div>
+              <p className="font-bold text-md text-[#3a4374] text-md">
+                {comment.user.name}
+              </p>
+              <p className="text-xs text-[#647196]">@{comment.user.username}</p>
+            </div>
+          </span>
+
+          <button
+            className="text-[#4660e6] self-end  font-bold  mb-1  "
+            onClick={() => console.log(comment.id)}
+          >
+            Reply
+          </button>
         </div>
+
         {!comment.replyingTo && (
           <p className="text-sm text-[#647196] ">{comment.content}</p>
         )}
@@ -32,6 +46,6 @@ export const Comment = ({ comment }: any) => {
           <Comment comment={reply} key={reply.user.name} />
         </div>
       ))}
-    </div>
+    </article>
   );
 };

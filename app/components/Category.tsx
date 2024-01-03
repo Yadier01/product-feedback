@@ -25,11 +25,11 @@ export const Category = () => {
 
   return (
     <div className="bg-white p-8 w- rounded-lg max-w-full">
-      <ul className="flex flex-wrap gap-8">
+      <ul className="flex flex-wrap gap-2">
         {categories.map((category) => (
-          <li key={category}>
+          <li key={category} className="bg-[#f2f4ff] rounded-lg py-1 px-3">
             <button
-              className="text-sm "
+              className="text-sm   "
               onClick={() => updateFilteredItems(category)}
             >
               {category}

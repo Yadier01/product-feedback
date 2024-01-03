@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
+import { useMyStore } from "./Store";
 export const NoComment = () => {
   const [userComment, setUserComment] = useState("");
   const [charLenght, setCharLenght] = useState(255);
+  const { filteredItems } = useMyStore();
   const inputHandler = (e: any) => {
     if (e.target.value.length > 256) return;
 
