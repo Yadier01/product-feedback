@@ -4,16 +4,26 @@ import Link from "next/link";
 import { useMyStore } from "./Store";
 import { ProductRequest } from "./ProductRequest";
 import { Comment } from "./Comment";
+import { SvgLeftArrow } from "./Svgs";
 export const ProductPage = ({ params }: any) => {
   const { filteredItems } = useMyStore();
   const item = filteredItems.find((item) => item.id === Number(params.id));
-  console.log(params.id);
 
   return (
     <>
       <div className="flex justify-between">
-        <Link href="/">Go Back</Link>
-        <Link href={`/feedback/${item?.id}/edit/${item?.id}`}>Edit</Link>
+        <Link
+          href="/"
+          className="text-[#647196]  flex items-center gap-3 justify-center font-bold"
+        >
+          <SvgLeftArrow /> <p>Go Back</p>
+        </Link>
+        <Link
+          href={`/feedback/${item?.id}/edit/${item?.id}`}
+          className="bg-[#4661e6] text-white p-3 rounded-xl text-sm font-bold"
+        >
+          Edit Feedback
+        </Link>
       </div>
 
       <div className="bg-white rounded-md ">
